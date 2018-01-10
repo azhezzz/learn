@@ -1,0 +1,421 @@
+*{
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	font-size: 14px;
+}
+html,body{
+	height: 100%;
+	min-width: 450px;
+}
+body{
+	background-color: #DFDEDE;
+}
+body,ul{
+	margin:0;
+	padding:0;
+}
+li{
+	list-style: none;
+}
+img{
+	max-width: 100%;
+}
+.bar-icon::before{
+	content: "";
+	display: block;
+	width: 70%;
+	height: 3px;
+	background-color:#F1EEEE;
+	margin:5px auto;
+}
+.clf::after,.clf::before{
+	content: "";
+	display: block;
+	clear: both;
+}
+/*tdlheader*/
+.tdlheader{
+	width: 100%;
+	padding: 10px;
+	background-color: #42CF92;
+	position: relative;
+	z-index: 100;
+	display: flex;
+	justify-content: space-between;
+	transition: all .5s ease;
+}
+.tdlheader .callsidebar{
+	float: left;
+	margin-left: 20px;
+	width: 40px;
+	border-radius: 5px;
+	padding: 5px 0;
+}
+@keyframes fade{
+	from{
+		transform: rotateY(90deg);
+	}
+	to{
+		transform: rotateY(0deg);
+	}
+}
+.tdlheader .back {
+	animation:fade .5s ease;
+	background: url(../imga/back.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.callsidebar:hover,.tdlheader .clearlist:hover{
+	background-color:rgba(0,0,0,.1);
+}
+.tdlheader .tdltitle{
+	font-size: 25px;
+	color:#F1EEEE;
+	width: 100px;
+	padding: 5px 0;
+	margin: 0 auto;
+}
+.tdlheader .clearlist{
+	float: right;
+	text-align: center;
+	margin-right: 20px;
+	font-size: 18px;
+	color:#F1EEEE;
+	width: 80px;
+	height: 40px;
+	align-self: center;
+	justify-content: space-around;
+	border-radius: 5px;
+	padding: 5px 0;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+/*side-bar*/
+.side-bar{
+	min-width: 200px;
+	width:20%;
+	background-color: #FFF4F4;
+	height: 100%;
+	position: absolute;
+	bottom: 0;
+	left: -20%;
+	height: 100%;
+	z-index: 50;
+	padding: 80px 0;
+	opacity: 0;
+	transition: all .5s ease;
+}
+.showSideBar{
+	left: 0;
+	opacity: 1;
+}
+.side-bar .item{
+	padding:10px 0;
+	height: 50px;
+	font-size: 16px;
+	line-height: 26px;
+	color: #666;
+
+}
+.side-bar .item img{
+	width: 25px;
+	float: left;
+	margin: 0 30px;
+}
+.side-bar .item:hover{
+	background-color: rgba(0,0,0,.1);
+}
+
+/*coverlay*/
+.coverlay{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	transition: all .5s ease;
+}
+.showCoverlay{
+    background-color: rgba(0,0,0,.5);
+    z-index: 30;
+}
+@keyframes rota{
+	from{
+		transform-origin: 0 0 0;
+		transform: translate(-50%,-80%) rotateY(-90deg);
+	}
+	to{
+		transform-origin: 0 0 0;
+		transform: translate(-50%,-80%) rotateY(0deg);
+	}
+}
+
+.coverlay .clearbox{
+	animation: rota .5s ease;
+	width: 80%;
+	height: 200px;
+	border-radius: 5px;
+	background-color: #fff;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-80%);
+}
+.coverlay .clearbox .cleartext{
+	width: 80%;
+	font-size: 25px;
+	color: #999;
+	text-align: center;
+	margin: 40px auto;
+}
+.coverlay .clearbox .clearbtn{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+}
+.coverlay .clearbox .clearbtn button{
+	width: 100px;
+	height: 50px;
+	border-radius: 10px;
+	font-size: 20px;
+	border: 0;
+	cursor: pointer;
+	outline: 0;
+}
+.coverlay .clearbox .clearbtn button:first-child{
+	color: #fff;
+	background-color: #FA4D4D;
+}
+.coverlay .skin-box{
+	animation: rota .5s ease;
+	width: 80%;
+	height: 200px;
+	border-radius: 5px;
+	background-color: #fff;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-80%);
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	align-content: space-around;
+}
+.coverlay .skin-box .skin{
+	width: 60%;
+	display: flex;
+	justify-content: space-between;
+}
+.skin-box .skin span:first-child{
+	font-size: 16px;
+	color: #999;
+}
+.skin-box .skin .skin-color{
+	display: inline-block;
+	width: 70px;
+	height: 24px;
+	border-radius: 12px;
+	background: #42CF92;
+}
+
+@keyframes shock{
+	0% {
+		transform: rotate(0deg);
+	}
+	25%{
+		transform: rotate(15deg);
+	}
+	75%{
+		transform: rotate(-15deg);
+	}
+	100%{
+		transform: rotate(0deg);
+	}
+}
+
+.skin-box .skin .skin-color:hover{
+	animation: shock .2s ease;
+	animation-iteration-count: infinite;
+}
+
+.skin-color>span{
+	display: inline-block;
+	width: 35px;
+	height: 24px;
+	border-radius: 12px 0 0 12px;
+	background-color: #fff;
+	border:1px solid #ccc;
+}
+/*addtdl*/
+
+
+.btnbox{
+	position: fixed;
+	bottom: 50px;
+	right: 50px;
+	z-index: 160;
+}
+.addbtn{
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	background-color: #F688B9;
+	transition: all .3s;
+	position: relative;
+	z-index:40;
+}
+.addbtn .bar-icon:first-child{
+	position: absolute;
+	right: 50%;
+	top: 50%;
+	width: 50px;
+	transform: translate(50%,-50%);
+}
+.addbtn .bar-icon:last-child{
+	position: absolute;
+	right: 50%;
+	top: 50%;
+	width: 50px;
+	transform: translate(50%,-50%) rotate(90deg);
+}
+.surebtn{
+	background-color: #444;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	position: absolute;
+	top:0;
+	right: 50%;
+	z-index: 35;
+	transform: translateX(50%) rotate(180deg);
+	text-align: center;
+	line-height: 40px;
+	transition: all .5s ease;
+	color: #fff;
+}
+.addtdl .btnbox .show:first-child{
+	transform:rotate(45deg);
+}
+.addtdl .btnbox .show:last-child{
+	top: -100%;
+	transform: translateX(50%) rotate(360deg);
+}
+.addtdl .showup{
+	opacity: 1;
+	transform: scale(1);
+}
+.writetdl{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+	z-index: 150;
+	opacity: 0;
+	transform: scale(0);
+	transform-origin: 0 0 0;
+	transition: all .7s ease;
+}
+.writetdl .tdlinput{
+	width: 80%;
+	margin: 5% auto;
+}
+.writetdl .tdlinput .task{
+	width: 100%;
+	height: 40px;
+	font-size: 20px;
+	border: 0;
+	outline: 0;
+	border-bottom: 1px solid #888;
+}
+.writetdl .tdlinput .task:focus{
+	border-bottom: 2px solid #222;
+}
+.writetdl .tdlinput .more{
+	font-size: 20px;
+	padding: 10px;
+	margin-top: 20px;
+	width: 100%;
+	border-radius: 10px;
+	outline: 0;
+}
+/*todo*/
+.todo{
+	margin:0 auto;
+}
+
+.todo input,.todo textarea{
+	font-size: 20px;
+}
+.todo .todolist{
+	width: 90%;
+	margin:0 auto;
+}
+.todolist .item{
+	width: 100%;
+	height: 60px;
+	background-color: #fff;
+	font-size: 17px;
+	line-height: 60px;
+	padding-left: 10px;
+	border-radius: 5px;
+	margin-top: 15px;
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.todolist .item .itemhandle{
+	width: 80px;
+	display: flex;
+	justify-content: space-around;
+}
+.todolist .doneitem input{
+	text-decoration: line-through;
+	color: #aaa;
+}
+
+.todolist .doneitem+.more textarea{
+	text-decoration: line-through;
+	color: #aaa;
+}
+.itemhandle img:hover{
+	cursor: pointer;
+}
+.todolist .item .task{
+	height: 80%;
+	width: 90%;
+	border: 0;
+	outline: 0;
+}
+.todolist .more{
+	width: 90%;
+	height: 150px;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%) scaleY(0);
+	z-index: 10;
+	transition: all .5s ease;
+}
+.todolist .showmore{
+	transform:translateX(-50%) scaleY(1);
+}
+.todolist .more textarea{
+	width: 100%;
+	height: 100%;
+	padding:10px;
+	outline: 0;
+	border-radius: 5px;
+	resize: none;
+}
+.todolist .more .morebtn{
+	position: absolute;
+	bottom: 5px;
+	right: 0;
+	margin-right: 10px;
+}

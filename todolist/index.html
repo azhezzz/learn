@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>待办记事录</title>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div id="app">
+	<tdlheader :changeskin="changeskin" :showdialog="showdialog"></tdlheader>
+	<side-bar :showbar="showbar"></side-bar>
+	<todo :showtodo="showtodo"></todo>
+	<addtdl></addtdl>
+	<coverlay :showbar="showbar" :changeskin="changeskin" :showdialog="showdialog"></coverlay>
+</div>
+
+<template id="tdlheader">
+	<div class="tdlheader clf">
+		<div class="callsidebar" @click="changebar" v-if="!changeskin">
+			<span class="bar-icon"></span>
+			<span class="bar-icon"></span>
+			<span class="bar-icon"></span>
+		</div>
+		<div class="callsidebar" v-if="changeskin" :class="{back:changeskin}"@click="back">
+		</div>
+		<div class="tdltitle">{{title}}</div>
+		<div class="clearlist" @click="clearlist">
+			<img src="imga/clear.png">清空
+		</div>
+	</div>
+</template>
+
+<template id="side-bar" >
+	<div class="side-bar clf" :class="{showSideBar:showbar}">
+		<ul class="title clf">
+			<li class="item" @click="changeshow(true)"><img src="imga/time.png">待做事项</li>
+			<li class="item" @click="changeshow(false)"><img src="imga/done.png" >完成事项</li>
+			<li class="item" @click="skin"><img src="imga/skin.png">皮肤</li>
+			<li class="item"><img src="imga/!.png">关于</li>
+		</ul>
+	</div>
+</template>
+
+<template id="coverlay">
+	<div class="coverlay" :class="classObject">
+		<div class="skin-box" v-show="changeskin">
+			<div class="skin"><span>文艺绿</span><span class="skin-color" @click="skin('#42CF92')">
+				<span></span>
+			</span></div>
+			<div class="skin"><span>狂热红</span><span class="skin-color" style="background-color: #FD5C5C" @click="skin('#FD5C5C')">
+				<span></span>
+			</span></div>
+			<div class="skin"><span>高冷蓝</span><span class="skin-color" style="background-color: #92C0F6" @click="skin('#92C0F6')">
+				<span></span>
+			</span></div>
+		</div>
+		<div class="clearbox" v-show="showdialog">
+			<div class="cleartext">确认清空当前信息吗？</div>
+			<div class="clearbtn">
+				<button @click="clearmsg">确认</button>
+				<button @click="esc">取消</button>
+			</div>	
+		</div>
+	</div>
+</template>
+
+<template id="addtdl">
+	<div class="addtdl">
+		<div class="btnbox">
+			<div class="addbtn" @click="changeWriteTdl" :class="{show:showWriteTdl}">
+				<span class="bar-icon"></span>
+				<span class="bar-icon"></span>
+			</div>
+			<div class="surebtn" @click="writeDown" :class="{show:showWriteTdl}">
+				确认
+			</div>
+		</div>
+		<div class="writetdl" :class="{showup:showWriteTdl}">
+			<div class="tdlinput">
+				<input type="text" placeholder="添加新的任务" autofocus="autofocus" class="task">
+				<textarea rows="10" placeholder="详情，若无可忽略" class="more"></textarea>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template id="todo">
+	<div class="todo">
+		<ul class="todolist">
+			<li class="item clf" v-for="(item,index) in list" :class="{doneitem:!showtodo}" @click="showmore(item,index)">
+				<input type="text" v-model="item.task" class="task" readonly>
+				<div class="itemhandle">
+					<img src="imga/itemdone.png" v-if="showtodo"@click="Done(item,index)">
+					<img src="imga/edit.png" v-if="showtodo" @click="Edit(item,index)">
+					<img src="imga/delete.png" @click="Delete(item,index)">
+				</div>
+		  </li>
+			<div class="more" :class="{showmore:editItem}">
+				<textarea v-model="itemmore" placeholder="可添加详细信息" :readonly="!showtodo">
+				</textarea>
+				<div class="morebtn">
+						<img src="imga/sure.png" @click="revise" v-if="showtodo">
+						<img src="imga/esc.png" @click="esc" v-if="showtodo">
+				</div>
+		  </div>	
+		</ul>
+	</div>
+</template>
+
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
