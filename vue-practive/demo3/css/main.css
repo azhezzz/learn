@@ -1,0 +1,87 @@
+body{
+	width: 100%;
+	height: 100%;
+}
+li{
+	list-style: none;
+}
+
+#header{
+	text-align: center;
+	background-color: #807979;
+	color: white;
+	position: relative;
+	height: 40px;
+	line-height: 40px;
+}
+#header button{
+	height: 100%;
+	padding: 10px;
+}
+#header button:first-child{
+	position: absolute;
+	left: 0;
+	top:0;
+}
+#header button:last-child{
+	position: absolute;
+	right: 0;
+	top:0;
+}
+
+.userlist,.userdata,.indexlist{
+	margin:0;
+	padding: 0;
+}
+.userlist .userindex{
+	background-color: #DBD0D0;
+	padding: 10px;
+}
+.userdata li{
+	padding: 10px 5px;
+	border-bottom: 1px #ccc solid;
+}
+.indexlist {
+	position: fixed;
+	right: 0;
+	top:50%;
+}
+.indexlist li{
+	padding:10px;
+}
+
+
+
+
+.alert-coverlay{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	background-color: rgba(0,0,0,.5);
+	z-index: 1000;
+}
+.alert-content{
+	background-color: white;
+	margin:auto;
+	width: 70%;
+	height: 30%;
+	position: relative;
+}
+.alert-title{
+	text-align: center;
+	border-bottom: 1px solid #ccc;
+}
+.alert-body{
+	text-align: center;
+}
+.alert-btn{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+.alert-btn .btn{
+	width: 50%;
+}

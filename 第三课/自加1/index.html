@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>自加1</title>
+<style>
+.box{
+	width: 200px;
+	margin:0 auto;
+	text-align: center;
+}
+input{
+	width: 50px;
+}
+</style>
+<script type="text/javascript">
+window.onload=function(){
+	var A=a();
+	document.getElementsByTagName("input")[0].onclick=function(){
+	var num=A();
+	document.getElementsByTagName("input")[0].value=num;
+	document.getElementById("1").innerHTML=document.getElementById("1").innerHTML+"<br/>"+num;}
+};
+function a(){
+	var counter=0;
+	return function (){
+		return counter+=1;
+	} 
+}
+
+</script>
+</head>
+<body>
+	<div class="box">
+		<input type="button" value="0">
+	</div>
+	<div class="box" id="1"></div>
+</body>
+</html>

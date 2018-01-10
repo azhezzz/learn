@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网页换肤</title>
+<style>
+body{
+	background-color: #ccc;
+}
+.box{
+	text-align: center;
+}
+
+li{
+	display: inline-block;
+	color: white;
+}
+
+.skin li{
+	width:7px; 
+	height:7px;
+     background: red;
+     cursor: pointer;
+     border:red solid;
+}
+.skin li:nth-child(2){
+	background: pink;
+	border:pink solid;
+}
+.skin li:nth-child(3){
+	background: yellow;
+	border:yellow solid;
+}
+
+.content li{
+	background-color: green;
+	text-align: left;
+	width:100px;
+	margin-left: -5px;
+	padding: 0;
+	border: 1px white solid;
+}
+
+</style>
+
+<script type="text/javascript">
+
+function changeColor(that){
+	var a=Math.ceil(Math.random()*10);
+	var b=Math.ceil(Math.random()*10);
+	var c=Math.ceil(Math.random()*10);
+	document.getElementsByClassName("skin")[0].children[0].style.backgroundColor="red";
+	document.getElementsByClassName("skin")[0].children[1].style.backgroundColor="pink";
+	document.getElementsByClassName("skin")[0].children[2].style.backgroundColor="yellow";
+	that.style.backgroundColor="white";
+	for (var i = 0; i < document.getElementsByClassName("content")[0].children.length; i++) {
+		document.getElementsByClassName("content")[0].children[i].style.backgroundColor="#"+a+b+c;
+	}
+	document.getElementsByTagName("body")[0].style.backgroundColor="#"+c+a+b;
+
+}
+
+</script>
+
+
+</head>
+<body>
+<div class="box">
+	<ul class="skin">
+		<li onclick="changeColor(this)" ></li>
+		<li onclick="changeColor(this)" ></li>
+		<li onclick="changeColor(this)" ></li>
+	</ul>
+	<ul class="content">
+		<li>旅游</li>
+		<li>生活</li>
+		<li>科技</li>
+		<li>健康</li>
+		<li>生活</li>
+		<li>美食</li>
+	</ul>
+</div>
+<div class="box"></div>
+</body>
+
+</html>

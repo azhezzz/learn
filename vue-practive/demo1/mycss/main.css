@@ -1,0 +1,9 @@
+.red{
+	color:red;
+}
+.container{
+	max-width: 600px;
+}
+template{
+	display: none;
+}

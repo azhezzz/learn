@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>移动鼠标，图片的透明度改变</title>
+</head>
+<style>
+.box{
+	border:1px solid black;
+	padding:20px;
+	margin:0 auto;
+	width: 700px;
+	height: 300px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	align-content: space-around; 
+}
+img{
+	border: 1px solid black;
+	opacity: 0.5
+}
+
+</style>
+<script type="text/javascript">
+window.onload=function(){
+	for (var i = document.getElementsByTagName("img").length - 1; i >= 0; i--) {
+		document.getElementsByTagName("img")[i].onmouseover=function(){
+			this.style.opacity=1;
+		}
+		document.getElementsByTagName("img")[i].onmouseout=function(){
+			this.style.opacity=0.5;
+		}
+	}
+};
+
+</script>
+
+
+<body>
+<div class="box">
+	<img src="./png/1.jpg">
+	<img src="./png/2.jpg">
+	<img src="./png/3.jpg">
+	<img src="./png/4.jpg">
+	<img src="./png/5.jpg">
+	<img src="./png/6.jpg">
+	<img src="./png/7.jpg">
+	<img src="./png/8.jpg">
+	<img src="./png/9.jpg">
+	<img src="./png/10.jpg">
+</div>
+</body>
+</html>

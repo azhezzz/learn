@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue-demo1</title>
+  <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="mycss/main.css">
+</head>
+<body>
+<div class="container">
+  <div class="form-group">
+    <label class="label-control">搜索</label>
+    <input type="text" class="form-control" v-model="searchmsg">
+  </div>
+  <div class="table-responsive">
+    <staffmsg :table-msg="tablemsg" :staff-msg="filtersearch"></staffmsg>
+  </div>
+</div>
+<template id="stafftable">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <td v-for="item in tableMsg">
+          {{item|capitalize}}
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="item in staffMsg">
+        <td v-for="oitem in tableMsg">
+          {{item[oitem]}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</template>
+<script type="text/javascript" src="../../vue/vue.js"></script>
+<script type="text/javascript" src="myjs/main.js"></script>
+</body>
+</html>

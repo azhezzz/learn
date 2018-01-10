@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>传参</title>
+<style>
+body{
+	background-color: #ccc;
+}
+.box{
+	text-align: center;
+}
+input{
+	display: block;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+
+
+</style>
+
+<script type="text/javascript">
+
+function Alert(){
+	var x=document.getElementsByTagName("input");
+	alert(x[0].value);
+	alert(x[1].value);
+
+}
+
+
+</script>
+
+
+</head>
+<body>
+<div class="box">
+	<input type="text" value="深圳大学" >
+	<input type="text" value="吴彦祖">
+	<input type="button" value="传参" onclick="Alert()">
+</div>
+<div class="box"></div>
+</body>
+
+</html>

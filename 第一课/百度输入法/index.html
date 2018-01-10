@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>传参</title>
+<style>
+body{
+	background-color: white;
+	text-align: center;
+}
+button{
+	margin-left: 29px;
+}
+ul{ 
+	display: none;
+	color: blue;
+	text-align: left;
+	margin:0 auto;
+	width:70px;
+	margin-top: 5px;
+	font-size: 12px;
+}
+li{	
+	padding: 3px;
+	list-style: none;
+	border: blue solid;
+	border-width: thin;
+}
+
+li:nth-child(1){
+	border-bottom: none;
+
+}
+li:nth-child(2){
+	border-top:none;
+	border-bottom: none;
+}
+li:hover{
+	background-color: rgb(217,225,246);
+}
+
+
+</style>
+
+<script type="text/javascript">
+var x=0;
+function Show(){
+	if(x==0){
+		document.getElementsByTagName("ul")[0].style.display="inherit";
+		x=1;
+	}
+ 	else{
+ 		Close();
+ 		x=0;
+ 	}
+}
+function Close(){
+ 	document.getElementsByTagName("ul")[0].style.display="none";
+ 	x=0;
+}
+</script>
+
+
+</head>
+<body>
+<button onclick="Show()">输入法</button>
+<ul>
+<li>手写</li>
+<li>拼音</li>
+<li onclick="Close()">关闭</li>
+</ul>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>使用插件完成轮播图</title>
+	<link rel="stylesheet" href="mycss/main.css">
+<style>
+	.container .hd {
+	text-align: center;
+	margin:0 auto;
+	padding: 0;
+	width: 50%;
+	}
+	.container .hd:after{
+		content: "";
+		display: block;
+		clear: both;
+	}
+	.container .hd li{
+		width: 100px;
+		height: 100px;
+		float: left;
+	}
+	.container .hd img{
+		max-width: 100%;
+	}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div id="box">
+			<ul id="imglist">
+				<li><a href="#"><img src="imges/1.jpg"></a></li>
+				<li><a href="#"><img src="imges/2.jpg"></a></li>
+				<li><a href="#"><img src="imges/3.jpg"></a></li>
+				<li><a href="#"><img src="imges/4.jpg"></a></li>
+				<li><a href="#"><img src="imges/5.jpg"></a></li>
+			</ul>
+		</div>
+		<ul class="hd">
+			<li><img src="imges/1.jpg"></li>
+			<li><img src="imges/2.jpg"></li>
+			<li><img src="imges/3.jpg"></li>
+			<li><img src="imges/4.jpg"></li>
+			<li><img src="imges/5.jpg"></li>
+		</ul>
+	</div>
+<script type="text/javascript" src="myjs/jquery1.42.min.js"></script>
+<script type="text/javascript" src="SuperSlide2.1-demo-00/jquery.SuperSlide.2.1.1.source.js"></script>
+<script type="text/javascript">
+	jQuery(".container").slide({ mainCell:"#imglist",effect:"left",autoPlay:true });
+</script>
+</body>
+</html>

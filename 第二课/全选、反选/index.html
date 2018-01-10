@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>全选、反选</title>
+<style>
+.box{
+	margin:30px auto;
+	width: 130px;
+	height: auto;
+	border: 1px black solid;
+	padding:5px;
+	border-radius:10px;
+	background-color: rgb(250,250,250)
+}
+ul.choose{
+	margin:0;
+	padding:0;
+	list-style: none;
+}
+ul.choose li{
+	font-size: 13px;
+	margin-top: 10px;
+}
+ul.choose li:first-child{
+	border-bottom: 1px solid black;
+	margin:0;
+	padding-bottom: 10px;
+	font-weight: bold;
+}
+span{
+	color: rgb(0,153,255);
+	cursor:pointer;
+}
+span:hover{
+	color: red;
+}
+.tip{
+	width: 450px;
+	margin:10px auto;
+}
+</style>
+<script src="../../jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+"use strict";
+var counter=0;
+$().ready(function(){
+	$("input:first").bind("click",function(){
+	if($(this).prop("checked")){
+		$("input:gt(0)").prop("checked",true);
+		counter=11;
+	}
+	else{
+		$("input:gt(0)").prop("checked",false);
+		counter=0;
+	}
+	});
+	$("input:gt(0)").bind("click",function(){
+		if($(this).prop("checked")){
+			counter+=1;
+		}
+		else{
+			counter-=1;
+			$("input:first").prop("checked",false);
+		}
+		if(counter==11){
+			$("input:first").prop("checked",true);
+		}
+	});
+	$("span").bind("click",function(){
+		$("input:gt(0)").prop("checked",function(){
+			return !($(this).prop("checked"));
+		});
+		if(counter==0||counter==11){
+			$("input:first").prop("checked",!($("input:first").prop("checked")));
+		}
+		counter=11-counter;
+	})
+});
+
+
+/* 
+  JavaScript实现
+var counter=0;
+var x=document.getElementsByTagName("input");
+//全选
+function allcheck(){
+	if(x[0].checked){
+		for (var i = 1; i < x.length; i++) {
+			x[i].checked=true;
+		}
+		counter=11;
+	}
+	else{
+		for (var i = 1; i < x.length; i++) {
+			x[i].checked=false;
+		}
+		counter=0;
+	}
+}
+//计数已选项
+function norcheck(){
+	console.log(this);
+	if(this.checked){
+		counter+=1;
+		if(counter==11){
+			x[0].checked=true;
+		}
+	}
+	else{
+		counter-=1;
+		x[0].checked=false;
+	}
+}
+//反选
+function specheck(){
+	for (var i = 1; i < x.length; i++) {
+		x[i].checked=!(x[i].checked);
+		}
+	if(counter==11||counter==0){
+		x[0].checked=!(x[0].checked);
+	}
+		counter=11-counter;
+}
+window.onload=function(){
+	x[0].onclick=allcheck;
+	document.getElementById("special").onclick=specheck;
+	for (var i = 1; i < x.length; i++) {
+		x[i].onclick=norcheck;
+	}
+};
+ */
+</script>
+</head>
+<body>
+<div class="box">
+	<ul class="choose">
+		<li><input type="checkbox" name="0">&nbsp<label for="0">全选</label>&nbsp&nbsp<span id="special">反选</span></li>
+		<li><input type="checkbox" name="1">&nbsp<label for="1">选项一</label></li>
+		<li><input type="checkbox" name="2">&nbsp<label for="2">选项二</label></li>
+		<li><input type="checkbox" name="3">&nbsp<label for="3">选项三</label></li>
+		<li><input type="checkbox" name="4">&nbsp<label for="4">选项四</label></li>
+		<li><input type="checkbox" name="5">&nbsp<label for="5">选项五</label></li>
+		<li><input type="checkbox" name="6">&nbsp<label for="6">选项六</label></li>
+		<li><input type="checkbox" name="7">&nbsp<label for="7">选项七</label></li>
+		<li><input type="checkbox" name="8">&nbsp<label for="8">选项八</label></li>
+		<li><input type="checkbox" name="9">&nbsp<label for="9">选项九</label></li>
+		<li><input type="checkbox" name="10">&nbsp<label for="10">选项十</label></li>
+		<li><input type="checkbox" name="11">&nbsp<label for="11">选项十一</label></li>
+	</ul>
+</div>
+<div class="tip">1、切换全选/全不选文字；2、根据选中个数更新全选框状态；</div>
+</body>
+</html>

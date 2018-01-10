@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>修改图片路径</title>
+	<style>
+html,body{
+	background-color: black;
+}
+img{
+	border-radius: 3px;
+}
+.box{
+	width: 214px;
+	padding:10px;
+	height: auto;
+	background-color: white;
+	border-radius: 10px;
+	margin:10px auto;
+	overflow: auto;
+	padding-bottom: 5px;
+}	
+.box1{
+	overflow: auto;
+	position: relative;
+}
+.box1_1{
+	float: left;
+	width: 156px;
+}
+.box1_2{
+	margin-left: 7px;
+	float: left;
+	width: 50px;
+}
+.box1_2 img{
+	margin-top:-1px;
+}
+.box2{
+	margin-left: -2px;
+	margin-top:-1px;
+}
+.box2 img{
+	margin:2px;
+}
+/*---显示等待gif----*/
+.loading{
+	background:#fff url("./pic/loading.gif") 50% no-repeat;
+	position: absolute;
+	width: 154px;
+	height: 154px;
+	opacity: 0.5;
+	top:0;
+	left: 0;
+	display: none;
+}
+	</style>
+	<script type="text/javascript">
+	"use strict";
+	window.onload=function(){
+		var x=document.getElementsByTagName("img");	
+		var y=document.getElementsByClassName("loading");
+		for (var i = 1; i < x.length; i++) {
+			x[i].onmouseover=function(){
+				x[0].src=this.src.replace(/small/,"big");
+				y[0].style.display="inherit";
+				//用于判断大图是否加载完成，若未完成，则显示等待gif	
+				x[0].complete?y[0].style.display="none":x[0].onload=function(){
+					y[0].style.display="none";
+				}
+			}
+		}
+	};
+	</script>
+</head>
+<body>
+	<div class="box">
+		<div class="box1">
+			<div class="box1_1"><img src="./pic/big_1.jpg" ><div class="loading"></div></div>
+			<div class="box1_2"><img src="./pic/small_1.jpg" title="1" >
+				<img src="./pic/small_2.jpg" title="2"><img src="./pic/small_3.jpg" title="3">
+			</div>
+		</div>
+		<div class="box2">
+			<img src="./pic/small_4.jpg" title="4"><img src="./pic/small_5.jpg" title="5"><img src="./pic/small_6.jpg" title="6"><img src="./pic/small_7.jpg" title="7"><img src="./pic/small_8.jpg" title="8"><img src="./pic/small_9.jpg" title="9"><img src="./pic/small_10.jpg" title="10"><img src="./pic/small_11.jpg" title="11">
+		</div>
+	</div>
+</body>
+</html>

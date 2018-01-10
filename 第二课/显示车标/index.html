@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>显示车标</title>
+<style>
+.box{
+	border:1px solid black;
+	width: 750px;
+	height: 380px;
+	margin:30px auto;
+	padding-left: 10px;
+}
+ul.list{
+	margin: 0 auto;
+	padding:0;
+	width: 100%;
+}	
+ul.list::after{
+	content: " ";
+	clear: both;
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+ul.list li{
+	padding:10px;
+	list-style: none;
+	width: 14%;
+	height: 100px;
+	background-color: rgb(240,240,240);
+	float: left;
+	margin: 10px;
+	border: 1px solid black;
+}
+.head{
+	text-align: center;
+}
+.pic{
+	position: relative;
+	border: 1px #ccc solid;
+	right: 25px;
+	bottom: 60px;
+	display: none;
+	zoom:1.5;
+	z-index: 2;
+}
+</style>
+<script type="text/javascript">
+	window.onload=function(){
+		var li=document.getElementsByTagName("ul");
+		console.log(li[0].children[0].children);
+		for (var i = 0; i < li[0].children.length; i++) {
+			li[0].children[i].onmouseover=function(){
+				this.children[2].style.display="inherit";
+			}
+		}
+		for (var i = 0; i < li[0].children.length; i++) {
+			li[0].children[i].onmouseout=function(){
+				this.children[2].style.display="none";
+			}
+		}
+	};
+</script>
+</head>
+<body>
+<div class="box">
+	<div class="head"><h2>名车车标展示-鼠标移过显示车标</h2></div>
+	<ul class="list">
+		<li><span>BMW</span><br/>宝马汽车<img class="pic" src="./png/1.jpg"></li>
+		<li><span>BMW</span><br/>宝马汽车<img class="pic" src="./png/2.jpg"></li>
+		<li><span>BMW</span><br/>宝马汽车<img class="pic" src="./png/3.jpg"></li>
+		<li><span>BMW</span><br/>宝马汽车<img class="pic" src="./png/4.jpg"></li>
+		<li><span>BMW</span><br/>宝马汽车<img class="pic" src="./png/5.jpg"></li>
+		<li><span>BMW</span><br/>宝马汽车<img class="pic" src="./png/6.jpg"></li>
+		<li><span>BMW</span><br/>宝马汽车<img class="pic" src="./png/7.jpg"></li>
+		<li><span>BMW</span><br/>宝马汽车<img class="pic" src="./png/8.jpg"></li>
+		<li><span>BMW</span><br/>宝马汽车<img class="pic" src="./png/9.jpg"></li>
+		<li><span>BMW</span><br/>宝马汽车<img class="pic" src="./png/10.jpg"></li>
+	</ul>	
+</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>传参</title>
+<style>
+body{
+	background-color: #eee;
+
+}
+label{
+	font-size: 20px;
+}
+.box1{
+	width: 200px;
+	margin:0 auto;
+}
+.box2{
+	margin:0 auto;
+	background-color: rgb(255,239,164);
+	width: 200px;
+	padding: 3px;
+	font-size: 12px;
+	border: rgb(255,153,0) solid;
+	border-width: thin;
+	margin-top: 10px;
+	display: none;
+}
+.box1:hover .box2{
+	
+}
+
+</style>
+
+<script type="text/javascript">
+function Show(){
+	document.getElementsByClassName("box2")[0].style.display="inherit";
+}
+function Close(){
+	document.getElementsByClassName("box2")[0].style.display="none";
+}
+</script>
+
+
+</head>
+<body>
+<div class="box1" onmouseover="Show()" onmouseout="Close();">
+<input type="checkbox" name="tips">
+<label for="tips">两周内自动登录</label>
+</div>
+<div class="box2">
+为了您的信息安全，请不要在网吧使用此功能
+</div>
+</body>
+
+</html>

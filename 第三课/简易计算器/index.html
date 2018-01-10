@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>简易计算器</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<style type="text/css">
+li{
+	list-style: none;
+}
+ul{
+	margin:0;
+	padding: 0;
+}
+#box{
+	width: 310px;
+	height: auto;
+	margin:20px auto;
+}
+header{
+	width: 100%;
+	background-color: black;
+	color: white;
+	text-align: right;
+}
+#show{
+	width: 100%;
+	background: url(./png/inputBg.jpg) repeat;
+	height: 84px;
+	text-align: right;
+	font-weight: bold;
+	cursor: default;	
+}
+#progress{padding-right: 10px; height: 20px;}
+#result{font-size: 50px;}
+#numinput{
+	box-sizing: border-box;
+	width: 100%;
+	background: url(./png/bg.jpg);
+	overflow: auto;
+	position: relative;
+	padding-left: 10px;
+}
+#numinput li{
+	float: left;
+	margin: 10px 5px;
+	width: 63px;
+	height: 41px;
+	background: url(./png/btn.png);
+	text-align: center;
+	line-height: 41px;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+}
+#numinput .btn-1{
+	background-position: 0 -41px;
+}
+#numinput .btn-2{
+	height: 99px;
+	background-position: 0 -164px;
+	line-height: 99px;
+}
+#numinput .btn-3{
+	width: 136px;
+	background-position: 0 -82px;
+	position: absolute;
+	left: 10;
+	bottom: 0;
+}
+#numinput li:last-child{
+	position: absolute;
+	bottom: 0;
+	left: 156px;
+}
+#numinput li:hover{
+	background-position: -63px 0;
+}
+#numinput .btn-1:hover{
+	background-position: -63px -41px;
+}
+#numinput .btn-2:hover{
+	background-position: -63px -164px;
+}
+#numinput .btn-3:hover{
+	background-position: 0 -123px;
+}
+</style>
+<script type="text/javascript" src="../../jquery/jquery-3.2.1.min.js"></script>
+<body>
+<div id="box">
+	<header>MADE BY azhezzz</header>
+	<div id="show"><div id="progress"></div><div id="result">0</div></div>
+	<ul id="numinput">
+		<li class="btn-1">C</li>
+		<li class="btn-1">%</li>
+		<li class="btn-1">÷</li>
+		<li class="btn-1">*</li>
+		<li>7</li>
+		<li>8</li>
+		<li>9</li>
+		<li class="btn-1">-</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li class="btn-1">+</li>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li class="btn-2">=</li>
+		<li class="btn-3">0</li>
+		<li>.</li>
+	</ul>
+</div>
+<script type="text/javascript">
+var arr=[];//用于result显示
+var brr=[];//用于progress显示
+var crr=[];//用于存储结果
+var count=0;
+var sign=[];//用于存储符号,[0]为当前符号(未确认),[1]为确认符号
+var drr=[];
+function a(that){
+	console.log("a")
+	count=0;
+	//第一个按下0时，无反应
+	if(arr.length===0&&$(that).html()==="0"){
+		$("#result").html("0");
+		return;
+	}
+	//第一个按下.时，显示0.
+	if(arr.length===0&&$(that).html()==="."){
+		arr.push("0");
+		arr.push(".");
+		$("#result").html(arr);
+		return;
+	}
+	//其他情况正常显示
+	arr.push($(that).html());
+	$("#result").html(arr);
+	//符号确认
+	sign[1]=sign[0];
+	return;
+}
+
+function b(that){
+	if($(that).html()==="C"){
+      arr=[];//用于result显示
+	  brr=[];//用于progress显示
+	  crr=[];//用于存储结果
+	  count=0;
+	  sign=[];//用于存储符号,[0]为当前符号(未确认),[1]为确认符号
+	  drr=[];
+	  return;
+	}
+	//记录符号
+	sign[0]=$(that).html();
+	//直接点击符号显示0+符号
+	if(count===0&&arr.length==0){
+		arr=[];
+		arr.push(0);
+	}
+	//连续点击符号改变progress的显示
+	if(count===1){
+		brr.pop();
+		brr.push($(that).html());
+		$("#progress").html(brr);
+		return;
+	}
+	//progress显示
+	brr=brr.concat(arr);
+	brr.push($(that).html());
+	$("#progress").html(brr);
+	//记录上次结果
+	if(crr.length===0){
+		crr[0]=arr.join("");
+	}
+	else{
+		crr[0]=d();
+	}
+	//初始化arr
+	arr=[];
+	count=1;
+}
+
+//显示结果并初始化
+function c(){
+	console.log("c");
+	var x;
+	var y;
+	var m=crr[0].indexOf(".");
+	var n=arr.join("").indexOf(".");
+	if(m==-1&&n==-1){
+		x=parseInt(crr[0]);
+		y=parseInt(arr.join(""));
+		if (sign[1]==="+"){	
+			arr=x+y;		
+		}
+		else if (sign[1]==="-"){
+			arr=x-y;
+		}
+		else if (sign[1]==="*"){
+			arr=x*y;
+		}
+		else if (sign[1]==="/"){
+			arr=x/y;
+		}
+	}
+	else if(m>-1||n>-1){
+		x=crr[0].split(".");
+		y=arr.join("").split(".");
+
+		if (sign[1]==="+"){	
+			drr[0]=parseInt(x[0])+parseInt(y[0]);
+			x[0]="1";
+			y[0]="1";
+			x=x.join("");
+			y=y.join("");
+			drr[1]=parseInt(x)+parseInt(y);
+			console.log(drr[1]);
+			if(drr[1].toString().indexOf("3")===0){
+				drr[0]+=1;
+			}
+			drr[1]=drr[1].toString().substr(1);
+			console.log(drr[1]);
+			drr[0]=drr[0].toString();
+			arr=drr.join(".");
+		}
+		else if (sign[1]==="-"){
+			drr[0]=parseInt(x[0])-parseInt(y[0]);
+			console.log(drr[0]);
+			x[0]="3";
+			y[0]="1";
+			x=x.join("");
+			y=y.join("");
+			drr[1]=parseInt(x)-parseInt(y);
+			console.log(drr[1]);
+			if(drr[1].toString().indexOf("1")===0){
+				drr[0]-=1;
+				console.log(drr[0]);
+			}
+			drr[1]=drr[1].toString().substr(1);
+			console.log(drr[1]);
+			drr[0]=drr[0].toString();
+			arr=drr.join(".");
+		}
+		else if (sign[1]==="*"){
+			drr[0]=parseInt(x[0])*parseInt(y[0]);
+			drr[1]=parseInt(x[1])*parseInt(y[1]);
+		}
+		else if (sign[1]==="/"){
+			drr[0]=parseInt(x[0])/parseInt(y[0]);
+			drr[1]=parseInt(x[1])/parseInt(y[1]);
+		}
+		
+	}
+	
+	$("#result").html(arr);
+	arr=[];
+	brr=[];
+	$("#progress").html(brr);
+	crr=[];
+	count=0;
+}
+
+//显示结果并将结果保存至crr[0]
+function d(){
+	var x=parseInt(crr[0]);
+	var y=parseInt(arr.join(""));
+	if (sign[1]==="+"){	
+		arr=x+y;
+	}
+	else if (sign[1]==="-"){
+		arr=x-y;
+	}
+	else if (sign[1]==="*"){
+		arr=x*y;
+	}
+	else if (sign[1]==="/"){
+		arr=x/y;
+	}
+	$("#result").html(arr);
+	return arr;
+}
+
+
+$().ready(function(){
+	$("#numinput li").not($("[class*=1],[class*=2]")).bind("mouseup",function(){
+		a(this);
+	});
+	$(".btn-1").bind("mouseup",function(){
+		b(this);
+	});
+	$(".btn-2").bind("mouseup",function(){
+		c();
+	});
+
+});
+</script>
+</body>
+</html>

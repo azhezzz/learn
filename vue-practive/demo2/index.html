@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue-demo2</title>
+  <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+
+<div class="container" id="demo">
+  <div class="form-group">
+    <label class="label-control">搜索</label>
+    <input type="text" class="form-control" v-model="searchmsg">
+
+  </div>
+		<div class="table-responsive">
+			<stafftable :table-msg="tablemsg" :staff-msg="filtermsg"></stafftable>
+<transition name="fade">	
+			<staffdialog v-show="dialogstate" :dialogtitle="dialogtitle"
+			:staffmsg="staffrevising" :revisemode="revise"></staffdialog>
+</transition>
+		</div>
+    
+</div>
+
+<!-- 员工列表 -->
+<template id="stafftable">
+	<div>
+		<table class="table table-bordered table-hover">
+		  <thead>
+		    <tr>
+		      <td v-for="item in tableMsg">
+		        {{item|capitalize}}
+		      </td>
+		      <td class="text-center">
+		      	修改/删除
+		      </td>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr v-for="(item,index) in staffMsg">
+		      <td v-for="oitem in tableMsg">
+		        {{item[oitem]}}
+		      </td>
+		      <td class="text-center">
+		      	<div class="btn-group">
+		      		<button class="btn btn-success" @click="revisedialog(index)">修改</button>
+		      		<button class="btn btn-danger" @click="deleteitem(index)">删除</button>	
+		      	</div>
+		      </td>
+		    </tr>
+		  </tbody>
+		</table>
+		<button class="btn btn-primary btn-lg" @click="createdialog">创建</button>
+	</div> 
+</template>
+
+
+	<!-- 对话框 -->
+<template id="staffdialog">
+	<div class="dialogs">
+		<transition name="fadesss">
+		<div class="dialog">
+			<header class="dialog-header text-center">
+				{{dialogtitle}}大神
+			</header>
+			<div class="dialog-body">
+				<div class="form-group">
+					<label class="control-label" >姓名</label>
+					<input type="text" class="form-control" v-model="staffmsg.name" :disabled="revisemode">
+				</div>
+				<div class="form-group">
+					<label class="control-label">年龄</label>
+					<input type="text" class="form-control" v-model="staffmsg.age">
+				</div>
+				<div class="form-group">
+					<label class="control-label">性别</label>
+					<select v-model="staffmsg.sex" class="form-control">
+						<option>潮男</option>
+						<option>超男</option>
+						<option>super男</option>
+					</select>
+				</div>
+			</div>
+			<footer class="dialog-footer">
+				<button class="btn btn-success" @click="savestaff">保存</button>
+				<button class="btn btn-info" @click="closedialog">关闭</button>
+			</footer>
+		</div>
+	</transition>
+		<div class="coverlay"></div>
+</template>
+
+
+
+
+<script type="text/javascript" src="../../vue/vue.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

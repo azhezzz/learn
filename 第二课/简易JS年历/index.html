@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>简易JS年历</title>
+</head>
+	<script src="../../jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
+	<style>
+		.box{
+			margin:0 auto;
+			width: 310px;
+			height: auto;
+			background-color: rgb(234,234,234);
+			
+		}
+		.calendar li{
+			list-style: none;
+			text-align: center;
+			float: left;
+			width: 50px;
+			height: 50px;
+			margin: 10px;
+			border: 1px solid black;
+			background-color: white;
+			color: rgb(255,102,153);
+		}
+		.calendar li+li{
+			color: white;
+			background-color: rgb(66,66,66);
+		}
+		.calendar{
+			overflow: auto;
+			display: block;
+			margin:0 auto;
+			padding:10px;
+		}
+		.holiday li{
+			list-style: none;
+			background-color: rgb(241,241,241);
+			color: rgb(102,102,102);
+			height: 60px;
+			line-height: 30px;
+			border: 1px solid white;
+
+		}
+		.holiday li+li{
+			display: none;
+		}
+		.holiday{
+			margin:0;
+			padding: 10px;
+		}
+		span{
+			font-weight:700;
+		}
+	</style>
+	<script type="text/javascript">
+	$().ready(function(){
+		$(".calendar li").bind("mouseover",function(){
+			$(this).css({"background-color":"white","color":"rgb(255,102,153)"});
+			$(this).siblings().css({"background-color":"rgb(66,66,66)","color":"white"});
+			var x=$(this).children("span").text();
+			$(".holiday li:eq("+(x-1)+")").css({"display":"inherit"});
+			$(".holiday li:eq("+(x-1)+")").siblings().css({"display":"none"});
+		})
+	});
+
+	</script>
+<body>
+	<div class="box">
+		<ul class="calendar">
+			<li><span>1</span><br/>JAN</li>
+			<li><span>2</span><br/>FER</li>
+			<li><span>3</span><br/>MAR</li>
+			<li><span>4</span><br/>APR</li>
+			<li><span>5</span><br/>MAY</li>
+			<li><span>6</span><br/>JUN</li>
+			<li><span>7</span><br/>JUL</li>
+			<li><span>8</span><br/>AUG</li>
+			<li><span>9</span><br/>SEP</li>
+			<li><span>10</span><br/>OCT</li>
+			<li><span>11</span><br/>NOV</li>
+			<li><span>12</span><br/>DEC</li>
+		</ul>
+		<ul class="holiday">
+				<li><span>1月节日</span><br/>xxxxxxxxxxxxxxxxxxx</li>
+				<li><span>2月节日</span><br/>xxxxxxxx</li>
+				<li><span>3月节日</span><br/>xxxxxxxx</li>
+				<li><span>4月节日</span><br/>xxxxxxxxxxxxxx</li>
+				<li><span>5月节日</span><br/>xxxxxxxx</li>
+				<li><span>6月节日</span><br/>xxxxxxxx</li>
+				<li><span>7月节日</span><br/>xxxxxxxx</li>
+				<li><span>8月节日</span><br/>xxxxxxxx</li>
+				<li><span>9月节日</span><br/>xxxxxxxx</li>
+				<li><span>10月节日</span><br/>xxxxxxxx</li>
+				<li><span>11月节日</span><br/>xxxxxxxx</li>
+				<li><span>12月节日</span><br/>xxxxxxxx</li>
+		</ul>
+	</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width initial-scale=1.0">
+	<title>模拟手机通讯录</title>
+	<link rel="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+	<div id="app">
+		<my-header header-title="通讯录"></my-header>
+		<my-userlist :User-data="UserData"></my-userlist>
+		<my-alert alert-title="呼叫" v-if="alertshow" :alert-msg="alertmsg"></my-alert>
+	</div>
+
+	<template id="myheader">
+		<div id="header">
+			<button class="btn btn-primary" @touchstart="back">返回</button>
+			{{headerTitle}}
+			<button class="btn btn-primary" @touchstart="home">主页</button>
+		</div>
+	</template>
+
+
+	<template id="my-userlist">
+		<div>
+			<ul class="userlist" ref="listuser">
+				<li v-for="item in UserData">
+					<p class="userindex">{{item.index}}</p>
+					<ul class="userdata">
+						<li v-for="items in item.user" @click="callit(items.tel)">{{items.name}}</li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="indexlist" ref="listindex">
+				<li v-for="item in UserData" @touchstart="moveindex">{{item.index}}</li>
+			</ul>
+		</div>	
+	</template>
+	
+
+
+	<template id="alert">
+		<div class="alert-coverlay">
+			<div class="alert-content">
+				<div class="alert-title"><h2>{{alertTitle}}</h2></div>
+				<div class="alert-body"><h3>{{alertMsg}}</h3></div>
+				<div class="btn-group alert-btn">
+					<button class="btn btn-default">确定</button>
+					<button class="btn btn-default" @click="cancel">取消</button>
+				</div>
+			</div>
+		</div>
+	</template>
+
+	<script type="text/javascript" src="../../vue/vue.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
